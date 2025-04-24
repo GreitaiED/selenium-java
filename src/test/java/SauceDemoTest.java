@@ -23,10 +23,13 @@ public class SauceDemoTest {
     @Test
     public void verifyLoggedInTest() {
         String productsText = driver.findElement(By.className("title")).getText();
-        Assertions.assertThat(productsText);
-
-
-
+        Assertions.assertThat(productsText)
+                .withFailMessage("Are u lalka? Expected title to be 'Products' but was '%s'", productsText)
+                .isNotNull()
+                .isNotEmpty()
+                .startsWith("Prod")
+                .endsWith("ucts")
+                .isEqualTo("Products");
     }
 
     @AfterMethod()
